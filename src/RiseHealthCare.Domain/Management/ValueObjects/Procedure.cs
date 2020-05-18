@@ -1,4 +1,5 @@
-﻿using RiseHealthCare.Domain.Management.Enums;
+﻿
+using RiseHealthCare.Domain.Management.Enums;
 using RiseHealthCare.Domain.Shared.DomainObjects;
 using System;
 using System.Collections.Generic;

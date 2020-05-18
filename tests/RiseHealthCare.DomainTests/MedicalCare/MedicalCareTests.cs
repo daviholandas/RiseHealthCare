@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -20,13 +21,16 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         public void Patient_ShowAge_ShowingCorrectAgeInformation()
         {
             //Arrange
-            var patient = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1985,12,22));
-            var patient2 = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1980,05,18));
+            var patient = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1985,12,23));
+            var patient2 = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1980,05,17));
             //Act
-            var ageInformation = patient.AgeInfomation();
-            var ageInformation2 = patient2.AgeInfomation();
+            var ageInformation = patient.Age();
+            var ageInformation2 = patient2.Age();
+            var ageExpected1 = (40, 0, 1);
+            var ageExpected2 = (34,4,25);
             //Assert
-            Assert.Equal("34 anos, 4 meses e 27 dias.", ageInformation);
+            ageInformation2.Should().BeEquivalentTo(ageExpected1);
+            ageInformation.Should().BeEquivalentTo(ageExpected2);
         }
     }
 }

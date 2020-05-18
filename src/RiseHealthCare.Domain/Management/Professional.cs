@@ -41,6 +41,21 @@ namespace RiseHealthCare.Domain.Management
             Procedures.Add(procedure);
         }
 
+        public (int years, int months, int days) TimeOfWork()
+        {
+            if (HiringDate.Day <= FiringDate.Day)
+            {
+                var years = FiringDate.Year - HiringDate.Year;
+                var months = FiringDate.Month - HiringDate.Month;
+                var days = FiringDate.Day - HiringDate.Day;
+                return (years, months, days);
+            }
+            var time = FiringDate.Subtract(HiringDate.AddYears(1).AddMonths(1).AddDays(2));
+            var timeOfWork = new DateTime(time.Ticks);
+
+            return (timeOfWork.Year, timeOfWork.Month, timeOfWork.Day);
+        }
+
         public override void Validate()
         {
             Validations.ValidateIfNull(Code, "Code can't be null.");

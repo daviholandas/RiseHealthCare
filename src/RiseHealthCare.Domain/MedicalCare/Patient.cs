@@ -37,12 +37,20 @@ namespace RiseHealthCare.Domain.MedicalCare
         //EF Relations
         public Guid? InsuranceHealthId { get; private set; }
 
-        public string AgeInfomation()
+        public (int years, int months, int days) Age()
         {
+            if(BirthDate.Day <= DateTime.Today.Day)
+            {
+                var today = DateTime.Today;
+                var years = today.Year - BirthDate.Year;
+                var months = today.Month - BirthDate.Month;
+                var days = today.Day - BirthDate.Day;
+                return (years, months, days);
+            }
             var time = DateTime.Today.Subtract(BirthDate.AddYears(1).AddMonths(1).AddDays(2));
             var age = new DateTime(time.Ticks);
 
-            return $"{age.Year} anos, {age.Month} meses e {age.Day} dias.";
+            return (age.Year,age.Month,age.Day);
         }
 
         public void ChangeInsuranceHealth(InsuranceHeatlh insurance)
