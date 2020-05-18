@@ -42,5 +42,7 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
 
         public override string ToString() => $"{GetType().Name} - [ID={Id}]";
 
+        public abstract void Validate();
+
     }
 }

@@ -7,10 +7,10 @@ using System.Text;
 
 namespace RiseHealthCare.Domain.Management
 {
-    public class Professional : Entity
+    public class Professional : Entity, IAggregateRoot
     {
         public Professional(int code, string name, DateTime hiringDate, DateTime firingDate,
-            Council council, IList<Phone> phones, IList<Procedure> procedures)
+            Council council, IList<Phone> phones, IList<Procedure> procedures, bool? active)
         {
             Code = code;
             Name = name;
@@ -19,6 +19,9 @@ namespace RiseHealthCare.Domain.Management
             Council = council;
             Phones = phones ?? new List<Phone>();
             Procedures = procedures ?? new List<Procedure>();
+            Active = active ?? true;
+
+            Validate();
         }
 
         private Professional() { }
@@ -30,11 +33,18 @@ namespace RiseHealthCare.Domain.Management
         public Council Council { get; private set; }
         public IList<Phone> Phones { get; private set; }
         public IList<Procedure> Procedures { get; private set; }
+        public bool Active { get; private set; }
 
 
         public void AddProcedure(Procedure procedure)
         {
             Procedures.Add(procedure);
+        }
+
+        public override void Validate()
+        {
+            Validations.ValidateIfNull(Code, "Code can't be null.");
+            Validations.ValidateIfEmpty(Name, "Name can't be empty.");
         }
     }
 }
