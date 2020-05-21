@@ -16,7 +16,7 @@ namespace RiseHealthCare.DomainTests.Management
         public Professional GenareteProfessionalWithOutPorcedures()
         {
             var professional = new Faker<Professional>("pt_BR")
-                .CustomInstantiator(p => new Professional(p.Random.Int(), p.Name.FullName(), p.Date.Between(new DateTime(2010, 1, 1), DateTime.Today),
+                .CustomInstantiator(p => new Professional(p.Random.Int(), p.Name.FullName(),p.Image.DataUri(100, 2,"green"), p.Date.Between(new DateTime(2010, 1, 1), DateTime.Today),
                     p.Date.Between(new DateTime(2010, 1, 1), DateTime.Today), null, null, null, p.Random.Bool()
                 ));
 
@@ -42,7 +42,7 @@ namespace RiseHealthCare.DomainTests.Management
         public Professional GenareteProfessionalWithOutHiringAndFiringDate(DateTime hiringDate, DateTime firingDate)
         {
             var professional = new Faker<Professional>("pt_BR")
-                .CustomInstantiator(p => new Professional(p.Random.Int(), p.Name.FullName(), hiringDate,
+                .CustomInstantiator(p => new Professional(p.Random.Int(), p.Name.FullName(), p.Image.DataUri(100, 2, "green"), hiringDate,
                     firingDate, null, null, null, p.Random.Bool()
                 ));
 

@@ -17,7 +17,7 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         {
             var patient = new Faker<Patient>("pt_BR")
                 .CustomInstantiator(p => new Patient(p.Name.FullName(), p.Date.Between(new DateTime(1920, 1, 1), DateTime.Now),
-                p.Random.Enum<Genre>(), p.Person.Cpf(), p.Person.Cpr(), p.Random.Words(5), null, null, Guid.NewGuid()));
+                p.Random.Enum<Genre>(), p.Person.Cpf(), p.Person.Cpr(), p.Random.Words(5), null, null, p.Image.DataUri(100, 2, "green"), Guid.NewGuid()));
 
             return patient;
         }
@@ -26,7 +26,7 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         {
             var patient = new Faker<Patient>("pt_BR")
                 .CustomInstantiator(p => new Patient(p.Name.FullName(), birthDate,
-                p.Random.Enum<Genre>(), p.Person.Cpf(), p.Person.Cpr(), p.Random.Words(5), null, null, Guid.NewGuid()));
+                p.Random.Enum<Genre>(), p.Person.Cpf(), p.Person.Cpr(), p.Random.Words(5), null, null, p.Image.DataUri(100, 2, "green"), Guid.NewGuid()));
 
             return patient;
         }
