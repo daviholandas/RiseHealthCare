@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Shared.DomainObjects
 {
     public abstract class ValueObject
     {
-
         protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
             if (left is null ^ right is null)
@@ -61,4 +58,3 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
         }
     }
 }
-

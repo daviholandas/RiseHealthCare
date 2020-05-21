@@ -2,26 +2,30 @@
 using RiseHealthCare.Domain.Shared.DomainObjects;
 using RiseHealthCare.Domain.Shared.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.MedicalCare
 {
     public class Patient : Entity, IAggregateRoot
     {
-        public Patient(string name, DateTime birthDate, Genre genre, string cPF, string rG, string informations, Address address, Phone phone, Guid insuranceHealthId)
+        public Patient(string name, DateTime birthDate, Genre genre, string cpf, string rg, string information, Address address, Phone phone, string photo,
+            Guid insuranceHealthId)
         {
             Name = name;
             BirthDate = birthDate;
             Genre = genre;
-            CPF = cPF;
-            RG = rG;
-            Informations = informations;
+            CPF = cpf;
+            RG = rg;
+            Information = information;
             Address = address;
             Phone = phone;
+            Photo = photo;
             InsuranceHealthId = insuranceHealthId;
 
             Validate();
+        }
+
+        private Patient()
+        {
         }
 
         public string Name { get; private set; }
@@ -29,17 +33,18 @@ namespace RiseHealthCare.Domain.MedicalCare
         public Genre Genre { get; private set; }
         public string CPF { get; private set; }
         public string RG { get; private set; }
-        public string Informations { get; private set; }
+        public string Information { get; private set; }
         public Address Address { get; private set; }
         public Phone Phone { get; private set; }
-        public InsuranceHeatlh InsuranceHealth { get; private set; }
+        public string Photo { get; private set; }
+        public InsuranceHealth InsuranceHealth { get; private set; }
 
         //EF Relations
         public Guid? InsuranceHealthId { get; private set; }
 
         public (int years, int months, int days) Age()
         {
-            if(BirthDate.Day <= DateTime.Today.Day)
+            if (BirthDate.Day <= DateTime.Today.Day)
             {
                 var today = DateTime.Today;
                 var years = today.Year - BirthDate.Year;
@@ -50,13 +55,13 @@ namespace RiseHealthCare.Domain.MedicalCare
             var time = DateTime.Today.Subtract(BirthDate.AddYears(1).AddMonths(1).AddDays(2));
             var age = new DateTime(time.Ticks);
 
-            return (age.Year,age.Month,age.Day);
+            return (age.Year, age.Month, age.Day);
         }
 
-        public void ChangeInsuranceHealth(InsuranceHeatlh insurance)
+        public void ChangeInsuranceHealth(InsuranceHealth insurance)
         {
             InsuranceHealth = insurance;
-            InsuranceHealthId = insurance.Id;        
+            InsuranceHealthId = insurance.Id;
         }
 
         public override void Validate()

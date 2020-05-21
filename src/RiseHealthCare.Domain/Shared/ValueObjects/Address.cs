@@ -1,7 +1,5 @@
 ﻿using RiseHealthCare.Domain.Shared.DomainObjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Shared.ValueObjects
 {
@@ -11,10 +9,10 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
         {
         }
 
-        public Address(string street, string houseNumber, string neighborhood, string city, string estate, string zipCode, string country)
+        public Address(string street, string number, string neighborhood, string city, string estate, string zipCode, string country)
         {
             Street = street;
-            HouseNumber = houseNumber;
+            Number = number;
             Neighborhood = neighborhood;
             City = city;
             Estate = estate;
@@ -23,7 +21,7 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
         }
 
         public string Street { get; private set; }
-        public string HouseNumber { get; private set; }
+        public string Number { get; private set; }
         public string Neighborhood { get; private set; }
         public string City { get; private set; }
         public string Estate { get; private set; }
@@ -33,7 +31,7 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Street;
-            yield return HouseNumber;
+            yield return Number;
             yield return City;
             yield return Estate;
             yield return ZipCode;
@@ -41,4 +39,3 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
         }
     }
 }
-

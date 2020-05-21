@@ -1,8 +1,6 @@
 ﻿using RiseHealthCare.Domain.Shared.DomainObjects;
 using RiseHealthCare.Domain.Shared.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Shared.ValueObjects
 {
@@ -14,7 +12,10 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
             Number = number;
             IsWhatsapp = isWhatsapp ?? true;
         }
-        private Phone() { }
+
+        private Phone()
+        {
+        }
 
         public NumberType NumberType { get; private set; }
         public string Number { get; private set; }

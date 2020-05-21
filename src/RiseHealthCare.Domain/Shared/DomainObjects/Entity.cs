@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Shared.DomainObjects
 {
@@ -13,10 +11,9 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
         }
 
         public Guid Id { get; private set; }
-        public DateTime RegisterDate { get; private set; }
-        public string LastModifiedBy { get; private set; }
-        public DateTime? LastModified { get; private set; }
-
+        public DateTime RegisterDate { get; set; }
+        public Guid LastModifiedBy { get; set; }
+        public DateTime? LastModified { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -43,6 +40,5 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
         public override string ToString() => $"{GetType().Name} - [ID={Id}]";
 
         public abstract void Validate();
-
     }
 }

@@ -3,17 +3,17 @@ using RiseHealthCare.Domain.Shared.DomainObjects;
 using RiseHealthCare.Domain.Shared.ValueObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Management
 {
     public class Professional : Entity, IAggregateRoot
     {
-        public Professional(int code, string name, DateTime hiringDate, DateTime firingDate,
+        public Professional(int code, string name, string photo, DateTime hiringDate, DateTime firingDate,
             Council council, IList<Phone> phones, IList<Procedure> procedures, bool? active)
         {
             Code = code;
             Name = name;
+            Photo = photo;
             HiringDate = hiringDate;
             FiringDate = firingDate;
             Council = council;
@@ -24,17 +24,19 @@ namespace RiseHealthCare.Domain.Management
             Validate();
         }
 
-        private Professional() { }
+        private Professional()
+        {
+        }
 
         public int Code { get; private set; }
         public string Name { get; private set; }
+        public string Photo { get; private set; }
         public DateTime HiringDate { get; private set; }
         public DateTime FiringDate { get; private set; }
         public Council Council { get; private set; }
         public IList<Phone> Phones { get; private set; }
         public IList<Procedure> Procedures { get; private set; }
         public bool Active { get; private set; }
-
 
         public void AddProcedure(Procedure procedure)
         {

@@ -1,7 +1,6 @@
 ﻿using RiseHealthCare.Domain.Shared.DomainObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RiseHealthCare.Domain.Management.ValueObjects
 {
@@ -14,13 +13,15 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
             RegistrationIsValid = registrationIsValid;
             EndToRegistration = endToRegistration;
         }
-        private Council() { }
+
+        private Council()
+        {
+        }
 
         public string Name { get; private set; }
         public string RegistrationCode { get; private set; }
         public bool? RegistrationIsValid { get; private set; }
         public DateTime? EndToRegistration { get; protected set; }
-
 
         protected override IEnumerable<object> GetAtomicValues()
         {
