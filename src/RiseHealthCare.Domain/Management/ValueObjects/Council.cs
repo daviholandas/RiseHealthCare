@@ -22,7 +22,8 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
         public string RegistrationCode { get; private set; }
         public bool? RegistrationIsValid { get; private set; }
         public DateTime? EndToRegistration { get; protected set; }
-
+        
+        public override string ToString() => $"{Name} - {RegistrationCode}";
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Name;

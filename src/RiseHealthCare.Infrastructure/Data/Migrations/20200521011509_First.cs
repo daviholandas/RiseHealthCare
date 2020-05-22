@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RiseHealthCare.Data.Migrations
+namespace RiseHealthCare.Infrastructure.Migrations
 {
     public partial class First : Migration
     {

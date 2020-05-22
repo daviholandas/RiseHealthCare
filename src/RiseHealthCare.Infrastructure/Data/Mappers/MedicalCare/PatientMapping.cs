@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RiseHealthCare.Domain.MedicalCare;
+using RiseHealthCare.Domain.Shared.ValueObjects;
 
-namespace RiseHealthCare.Data.Mappers.MedicalCare
+namespace RiseHealthCare.Infrastructure.Mappers.MedicalCare
 {
     public class PatientMapping : IEntityTypeConfiguration<Patient>
     {
@@ -25,11 +26,17 @@ namespace RiseHealthCare.Data.Mappers.MedicalCare
                 .HasColumnType("varchar(20)")
                 .IsRequired();
 
-            builder.Property(p => p.CPF)
-                .HasColumnType("varchar(15)");
-            builder.HasIndex(p => p.CPF)
-                .IsUnique();
+            builder.OwnsOne(p => p.CPF, c => {
+                c.Property(c => c.Number)
+                    .IsRequired()
+                    .HasMaxLength(CPF.CPFMaxLength)
+                    .HasColumnName("CPF")
+                    .HasColumnType($"varchar({CPF.CPFMaxLength})");
 
+                c.HasIndex(p => p.Number)
+                    .IsUnique();
+            });
+            
             builder.Property(p => p.RG)
                 .HasColumnType("varchar(25)");
 

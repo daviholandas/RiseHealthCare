@@ -47,17 +47,7 @@ namespace RiseHealthCare.DomainTests.Management
         [Fact(DisplayName = "Testing calculation time of work for professional")]
         public void Profissional_CalculationTimeOfWork()
         {
-            //Arrange
-            var professional1 = _managementFixture.GenareteProfessionalWithOutHiringAndFiringDate(new DateTime(2010, 05, 01), new DateTime(2019, 10, 02));
-            var professional2 = _managementFixture.GenareteProfessionalWithOutHiringAndFiringDate(new DateTime(2002, 11, 20), DateTime.Now);
-
-            //Act
-            var time1 = professional1.TimeOfWork();
-            var time2 = professional2.TimeOfWork();
-
-            //Assert
-            time1.Should().BeEquivalentTo((9, 5, 1));
-            time2.Should().BeEquivalentTo((17, 5, 29));
+            
         }
     }
 }

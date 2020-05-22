@@ -13,7 +13,7 @@ namespace RiseHealthCare.Domain.MedicalCare
             Name = name;
             BirthDate = birthDate;
             Genre = genre;
-            CPF = cpf;
+            CPF = new CPF(cpf);
             RG = rg;
             Information = information;
             Address = address;
@@ -31,7 +31,7 @@ namespace RiseHealthCare.Domain.MedicalCare
         public string Name { get; private set; }
         public DateTime BirthDate { get; private set; }
         public Genre Genre { get; private set; }
-        public string CPF { get; private set; }
+        public CPF CPF { get; private set; }
         public string RG { get; private set; }
         public string Information { get; private set; }
         public Address Address { get; private set; }
@@ -67,7 +67,7 @@ namespace RiseHealthCare.Domain.MedicalCare
         public override void Validate()
         {
             Validations.ValidateIfEmpty(Name, "Name can't be empty.");
-            Validations.ValidateIfEmpty(CPF, "CPF can't be empty");
+            Validations.ValidateIfEmpty(CPF.Number, "CPF can't be empty");
             Validations.ValidateIfNull(Genre, "Genre can't be null");
         }
     }

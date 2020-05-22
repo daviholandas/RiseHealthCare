@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using System;
+using RiseHealthCare.Domain.Shared.ValueObjects;
 using Xunit;
 
 namespace RiseHealthCare.DomainTests.MedicalCare
@@ -17,17 +18,22 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         [Fact(DisplayName = "Testing show age information.")]
         public void Patient_ShowAge_ShowingCorrectAgeInformation()
         {
+            
+        }
+
+        [Theory(DisplayName = "Testing validation CPF.")]
+        [InlineData("017.333.663-93", true)]
+        [InlineData("11111111193", false)]
+        [InlineData("222.222.222-22", false)]
+        public void CPF_CPFVerification(string cpf, bool resultValidation)
+        {
             //Arrange
-            var patient = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1985, 12, 23));
-            var patient2 = _fixtureTests.GeneratePatientWithoutBirthDate(new DateTime(1980, 05, 17));
+            
             //Act
-            var ageInformation = patient.Age();
-            var ageInformation2 = patient2.Age();
-            var ageExpected1 = (40, 0, 1);
-            var ageExpected2 = (34, 4, 25);
+            var result = CPF.Validate(cpf);
             //Assert
-            ageInformation2.Should().BeEquivalentTo(ageExpected1);
-            ageInformation.Should().BeEquivalentTo(ageExpected2);
+            result.Should().Be(resultValidation);
+
         }
     }
 }

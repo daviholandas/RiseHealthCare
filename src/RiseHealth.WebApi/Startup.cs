@@ -1,9 +1,11 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RiseHealth.WebApi.Setup;
+using RiseHealthCare.Infrastructure.IoC;
 
 namespace RiseHealth.WebApi
 {
@@ -21,6 +23,8 @@ namespace RiseHealth.WebApi
         {
             services.ApiConfig(Configuration);
             services.AddContexts(Configuration);
+            services.AddMediatR(typeof(Startup));
+            services.RegisterServices();
             services.AddControllers();
         }
 

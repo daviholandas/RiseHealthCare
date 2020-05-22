@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RiseHealthCare.Domain.Management;
 
-namespace RiseHealthCare.Data.Mappers.Management
+namespace RiseHealthCare.Infrastructure.Mappers.Management
 {
     public class ProfessionalMapping : IEntityTypeConfiguration<Professional>
     {

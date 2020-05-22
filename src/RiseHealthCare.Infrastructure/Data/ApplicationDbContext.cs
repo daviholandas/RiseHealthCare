@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RiseHealthCare.Data
+namespace RiseHealthCare.Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {
@@ -20,7 +20,7 @@ namespace RiseHealthCare.Data
         }
 
         //Management Context
-        public DbSet<Professional> PoProfessionals { get; set; }
+        public DbSet<Professional> Professionals { get; set; }
 
         public DbSet<InsuranceHealth> InsurancesHealth { get; set; }
 
@@ -32,6 +32,11 @@ namespace RiseHealthCare.Data
             foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys())) 
+                relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+           
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 

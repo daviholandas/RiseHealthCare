@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0762F1C1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiseHealthCare.DomainTests", "tests\RiseHealthCare.DomainTests\RiseHealthCare.DomainTests.csproj", "{8AEE97D7-D2F8-43EC-8DBD-B26F495068AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiseHealthCare.Data", "src\RiseHealthCare.Data\RiseHealthCare.Data.csproj", "{B9A59585-0DE7-4754-8E05-414BDD246408}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiseHealthCare.Infrastructure", "src\RiseHealthCare.Infrastructure\RiseHealthCare.Infrastructure.csproj", "{B9A59585-0DE7-4754-8E05-414BDD246408}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiseHealth.WebApi", "src\RiseHealth.WebApi\RiseHealth.WebApi.csproj", "{73D1C7A6-879E-4BD2-979F-2AF56764FB2C}"
 EndProject

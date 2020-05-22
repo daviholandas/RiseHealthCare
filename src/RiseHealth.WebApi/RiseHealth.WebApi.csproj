@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Management\ProfessionalCommands" />
     <Folder Include="Controllers\" />
     <Folder Include="V1\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
@@ -20,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RiseHealthCare.Data\RiseHealthCare.Data.csproj" />
     <ProjectReference Include="..\RiseHealthCare.Domain\RiseHealthCare.Domain.csproj" />
+    <ProjectReference Include="..\RiseHealthCare.Infrastructure\RiseHealthCare.Infrastructure.csproj" />
   </ItemGroup>
 
 
