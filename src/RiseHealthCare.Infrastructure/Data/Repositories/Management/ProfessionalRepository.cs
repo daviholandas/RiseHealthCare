@@ -26,7 +26,7 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
             _context.SaveChangesAsync();
         }
 
-        public async void DeleteProfessional(Guid id)
+        public void DeleteProfessional(Guid id)
         {
             var professional =  GetProfessionalById(id).Result;
             _context.Professionals.Remove(professional);

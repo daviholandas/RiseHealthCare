@@ -8,13 +8,13 @@ namespace RiseHealthCare.Domain.Management
 {
     public class Professional : Entity, IAggregateRoot
     {
-        public Professional(int code, string name, string photo, DateTime hiringDate, DateTime firingDate,
+        public Professional(int code, string name, string photo, DateTime? hiringDate, DateTime firingDate,
             Council council, IList<Phone> phones, IList<Procedure> procedures, bool? active)
         {
             Code = code;
             Name = name;
             Photo = photo;
-            HiringDate = hiringDate;
+            HiringDate = hiringDate ?? DateTime.Now;
             FiringDate = firingDate;
             Council = council;
             Phones = phones ?? new List<Phone>();

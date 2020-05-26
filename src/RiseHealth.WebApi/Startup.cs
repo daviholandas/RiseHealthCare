@@ -22,8 +22,6 @@ namespace RiseHealth.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.ApiConfig(Configuration);
-            services.AddContexts(Configuration);
-            services.AddMediatR(typeof(Startup));
             services.RegisterServices();
             services.AddControllers();
         }
