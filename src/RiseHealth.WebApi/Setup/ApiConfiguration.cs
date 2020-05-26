@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using MediatR;
@@ -9,8 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RiseHealth.WebApi.AutoMapper;
 using RiseHealth.WebApi.Commands.Management.ProfessionalCommands;
 using RiseHealth.WebApi.Filters;
+using RiseHealth.WebApi.Services.Management;
 using RiseHealthCare.Infrastructure;
 using RiseHealthCare.Infrastructure.Mediator;
 
@@ -23,7 +26,10 @@ namespace RiseHealth.WebApi.Setup
             //Contexts Dbs
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
+            
+            //AutoMapper
+            services.AddAutoMapper(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
+            
             //Versioning
             services.AddApiVersioning(options =>
             {
@@ -47,9 +53,11 @@ namespace RiseHealth.WebApi.Setup
             //Mediator
             services.AddMediatR(typeof(Startup));
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+            
+            //Services
+            services.AddScoped<IProfessionalPersistenceService, ProfessionalPersistenceService>();
 
-            services
-                .AddScoped<IRequestHandler<CreateProfessionalCommand, ValidationResult>, ProfessionalCommandHandler>();
+           
             
 
             return services;

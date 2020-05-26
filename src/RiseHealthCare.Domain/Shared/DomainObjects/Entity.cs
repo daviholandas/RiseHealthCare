@@ -4,7 +4,7 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
 {
     public abstract class Entity
     {
-        public Entity()
+        protected Entity()
         {
             Id = Guid.NewGuid();
             RegisterDate = DateTime.Now;
@@ -12,7 +12,6 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
 
         public Guid Id { get; private set; }
         public DateTime RegisterDate { get; set; }
-        public Guid LastModifiedBy { get; set; }
         public DateTime? LastModified { get; set; }
 
         public override bool Equals(object obj)

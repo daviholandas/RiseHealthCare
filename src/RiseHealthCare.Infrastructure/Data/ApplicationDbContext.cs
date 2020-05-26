@@ -55,7 +55,6 @@ namespace RiseHealthCare.Infrastructure
 
                     case EntityState.Modified:
                         entry.Entity.LastModified = DateTime.Now;
-                        entry.Entity.LastModifiedBy = entry.Entity.Id;
                         break;
                 }
             }

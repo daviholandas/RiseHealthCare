@@ -11,13 +11,10 @@ namespace RiseHealth.WebApi.AutoMapper
     public class DtoToDomainMappingProfile : Profile
     {
         private readonly IMapper _mapper;
-
         public DtoToDomainMappingProfile(IMapper mapper)
         {
             _mapper = mapper;
-        }
-        public DtoToDomainMappingProfile()
-        {
+            
             CreateMap<CouncilDTO, Council>()
                 .ConstructUsing(c => new Council(c.Name, c.RegistrationCode,
                     c.RegistrationIsValid, c.EndToRegistration));
