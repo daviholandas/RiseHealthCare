@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RiseHealthCare.Infrastructure;
 
-namespace RiseHealthCare.Infrastructure.Migrations
+namespace RiseHealthCare.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -40,9 +40,6 @@ namespace RiseHealthCare.Infrastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("varchar(150)");
 
@@ -64,29 +61,31 @@ namespace RiseHealthCare.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Code")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("FiringDate")
+                    b.Property<DateTime?>("FiringDate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("HiringDate")
+                    b.Property<DateTime?>("HiringDate")
                         .HasColumnType("datetime");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.ToTable("Professionals");
                 });
@@ -99,9 +98,6 @@ namespace RiseHealthCare.Infrastructure.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime");
-
-                    b.Property<string>("CPF")
-                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Genre")
                         .IsRequired()
@@ -116,12 +112,12 @@ namespace RiseHealthCare.Infrastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("RG")
                         .HasColumnType("varchar(25)");
@@ -130,10 +126,6 @@ namespace RiseHealthCare.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CPF")
-                        .IsUnique()
-                        .HasFilter("[CPF] IS NOT NULL");
 
                     b.HasIndex("InsuranceHealthId");
 
@@ -147,17 +139,14 @@ namespace RiseHealthCare.Infrastructure.Migrations
                             b1.Property<Guid>("ProfessionalId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<DateTime?>("EndToRegistration")
-                                .HasColumnType("datetime2");
+                            b1.Property<string>("Estate")
+                                .HasColumnType("varchar(15)");
 
                             b1.Property<string>("Name")
                                 .HasColumnType("varchar(100)");
 
                             b1.Property<string>("RegistrationCode")
                                 .HasColumnType("varchar(50)");
-
-                            b1.Property<bool?>("RegistrationIsValid")
-                                .HasColumnType("bit");
 
                             b1.HasKey("ProfessionalId");
 
@@ -266,6 +255,29 @@ namespace RiseHealthCare.Infrastructure.Migrations
                                 .HasColumnType("varchar(100)");
 
                             b1.HasKey("PatientId");
+
+                            b1.ToTable("Patients");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PatientId");
+                        });
+
+                    b.OwnsOne("RiseHealthCare.Domain.Shared.ValueObjects.CPF", "CPF", b1 =>
+                        {
+                            b1.Property<Guid>("PatientId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Number")
+                                .IsRequired()
+                                .HasColumnName("CPF")
+                                .HasColumnType("varchar(14)")
+                                .HasMaxLength(14);
+
+                            b1.HasKey("PatientId");
+
+                            b1.HasIndex("Number")
+                                .IsUnique()
+                                .HasFilter("[CPF] IS NOT NULL");
 
                             b1.ToTable("Patients");
 

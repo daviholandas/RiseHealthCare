@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RiseHealth.WebApi.AutoMapper;
-using RiseHealth.WebApi.Commands.Management.ProfessionalCommands;
 using RiseHealth.WebApi.Filters;
 using RiseHealth.WebApi.Services.Management;
 using RiseHealthCare.Infrastructure;
@@ -28,7 +27,7 @@ namespace RiseHealth.WebApi.Setup
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             
             //AutoMapper
-            services.AddAutoMapper(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
+            services.AddAutoMapper(typeof(AutoMapperProfile));
             
             //Versioning
             services.AddApiVersioning(options =>
@@ -51,7 +50,7 @@ namespace RiseHealth.WebApi.Setup
             
             
             //Mediator
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             
             //Services

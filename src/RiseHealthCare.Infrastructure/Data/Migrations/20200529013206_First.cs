@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RiseHealthCare.Infrastructure.Migrations
+namespace RiseHealthCare.Infrastructure.Data.Migrations
 {
     public partial class First : Migration
     {
@@ -13,7 +13,6 @@ namespace RiseHealthCare.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    LastModifiedBy = table.Column<Guid>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true),
                     Code = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -32,17 +31,15 @@ namespace RiseHealthCare.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    LastModifiedBy = table.Column<Guid>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    Code = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(200)", nullable: true),
-                    HiringDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    FiringDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Code = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Photo = table.Column<string>(type: "varchar(100)", nullable: true),
+                    HiringDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    FiringDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     Council_Name = table.Column<string>(type: "varchar(100)", nullable: true),
                     Council_RegistrationCode = table.Column<string>(type: "varchar(50)", nullable: true),
-                    Council_RegistrationIsValid = table.Column<bool>(nullable: true),
-                    Council_EndToRegistration = table.Column<DateTime>(nullable: true),
+                    Council_Estate = table.Column<string>(type: "varchar(15)", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -56,12 +53,11 @@ namespace RiseHealthCare.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
-                    LastModifiedBy = table.Column<Guid>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Genre = table.Column<string>(type: "varchar(20)", nullable: false),
-                    CPF = table.Column<string>(type: "varchar(15)", nullable: true),
+                    CPF = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: true),
                     RG = table.Column<string>(type: "varchar(25)", nullable: true),
                     Information = table.Column<string>(type: "varchar(200)", nullable: true),
                     Address_Street = table.Column<string>(type: "varchar(100)", nullable: true),
@@ -74,6 +70,7 @@ namespace RiseHealthCare.Infrastructure.Migrations
                     Phone_NumberType = table.Column<int>(nullable: true),
                     Phone_Number = table.Column<string>(type: "varchar(100)", nullable: true),
                     Phone_IsWhatsapp = table.Column<bool>(nullable: true),
+                    Photo = table.Column<string>(type: "varchar(100)", nullable: true),
                     InsuranceHealthId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -109,7 +106,7 @@ namespace RiseHealthCare.Infrastructure.Migrations
                         column: x => x.ProfessionalId,
                         principalTable: "Professionals",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,6 +132,11 @@ namespace RiseHealthCare.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Patients_InsuranceHealthId",
+                table: "Patients",
+                column: "InsuranceHealthId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patients_CPF",
                 table: "Patients",
                 column: "CPF",
@@ -142,9 +144,10 @@ namespace RiseHealthCare.Infrastructure.Migrations
                 filter: "[CPF] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_InsuranceHealthId",
-                table: "Patients",
-                column: "InsuranceHealthId");
+                name: "IX_Professionals_Code",
+                table: "Professionals",
+                column: "Code",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -14,6 +14,7 @@ namespace RiseHealth.WebApi.DTOs.Management
         public string Photo { get; set; }
         public DateTime HiringDate { get; set; }
         public DateTime FiringDate { get; set; }
+        public string CouncilToString { get; set; }
         public CouncilDTO Council { get; set; }
         public IList<PhoneDTO> Phones { get; set; }
         public IList<ProcedureDTO> Procedures { get; set; }

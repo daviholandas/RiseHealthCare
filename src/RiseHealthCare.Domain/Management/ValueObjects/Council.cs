@@ -6,12 +6,12 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
 {
     public class Council : ValueObject
     {
-        public Council(string name, string registrationCode, bool? registrationIsValid, DateTime? endToRegistration)
+        public Council(string name, string registrationCode, string estate)
         {
             Name = name;
             RegistrationCode = registrationCode;
-            RegistrationIsValid = registrationIsValid;
-            EndToRegistration = endToRegistration;
+            Estate = estate;
+
         }
 
         private Council()
@@ -20,16 +20,15 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
 
         public string Name { get; private set; }
         public string RegistrationCode { get; private set; }
-        public bool? RegistrationIsValid { get; private set; }
-        public DateTime? EndToRegistration { get; protected set; }
-        
-        public override string ToString() => $"{Name} - {RegistrationCode}";
+        public string Estate { get; private set; }
+
+        public override string ToString() => $"{Name} - {RegistrationCode}/{Estate}";
+
+
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Name;
             yield return RegistrationCode;
-            yield return RegistrationIsValid;
-            yield return EndToRegistration;
         }
     }
 }

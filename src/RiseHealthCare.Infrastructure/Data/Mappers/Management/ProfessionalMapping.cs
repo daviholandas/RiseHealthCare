@@ -14,10 +14,13 @@ namespace RiseHealthCare.Infrastructure.Mappers.Management
 
             builder.Property(p => p.Code)
                 .HasColumnType("int")
-                .ValueGeneratedOnAdd();
+                .IsRequired();
+            builder.HasIndex(p => p.Code)
+                .IsUnique();
 
             builder.Property(p => p.Name)
-                .HasColumnType("varchar(200)");
+                .HasColumnType("varchar(200)")
+                .IsRequired();
 
             builder.Property(p => p.Photo)
                 .HasColumnType("varchar(100)");
@@ -34,6 +37,8 @@ namespace RiseHealthCare.Infrastructure.Mappers.Management
                     .HasColumnType("varchar(100)");
                 c.Property(co => co.RegistrationCode)
                     .HasColumnType("varchar(50)");
+                c.Property(c => c.Estate)
+                    .HasColumnType("varchar(15)");
             });
 
             builder.OwnsMany(p => p.Phones, ph =>

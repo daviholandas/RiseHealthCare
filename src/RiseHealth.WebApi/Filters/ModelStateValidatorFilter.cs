@@ -14,9 +14,9 @@ namespace RiseHealth.WebApi.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.ModelState.IsValid)
+            if (!context.ModelState.IsValid)
             {
-                var errors = new ErrorModel(context.ModelState.GetErroMessages());
+                var errors = new ErrorModel(context.ModelState.GetErrorsMessages());
                 context.Result =  new BadRequestObjectResult(errors);
             }
         }
