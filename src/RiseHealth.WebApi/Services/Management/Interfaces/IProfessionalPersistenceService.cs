@@ -1,16 +1,18 @@
+using RiseHealth.WebApi.DTOs.Management;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RiseHealth.WebApi.DTOs.Management;
 
 namespace RiseHealth.WebApi.Services.Management
 {
     public interface IProfessionalPersistenceService
     {
-        Task<bool> SaveProfessional(ProfessionalDTO professionalDto);
+        Task<bool> SaveProfessional(ProfessionalDto professionalDto);
 
-        Task<ProfessionalDTO> GetProfessionalById(Guid id);
-        Task<ProfessionalDTO> GetProfessionalByCode(int code);
-        Task<IEnumerable<ProfessionalDTO>> GetAllProfessionals();
+        Task<ProfessionalDto> GetProfessionalById(Guid id);
+
+        Task<ProfessionalDto> GetProfessionalByCode(int code);
+
+        Task<IEnumerable<ProfessionalDto>> GetAllProfessionals();
     }
 }

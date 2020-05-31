@@ -2,7 +2,7 @@ using RiseHealthCare.Domain.Management.Enums;
 
 namespace RiseHealth.WebApi.DTOs.Management
 {
-    public class ProcedureDTO
+    public class ProcedureDto
     {
         public int Code { get; set; }
         public string Name { get; set; }

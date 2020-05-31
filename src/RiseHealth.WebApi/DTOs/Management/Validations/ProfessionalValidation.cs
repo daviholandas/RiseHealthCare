@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace RiseHealth.WebApi.DTOs.Management.Validations
 {
-    public class ProfessionalValidation : AbstractValidator<ProfessionalDTO>
+    public class ProfessionalValidation : AbstractValidator<ProfessionalDto>
     {
         public ProfessionalValidation()
         {

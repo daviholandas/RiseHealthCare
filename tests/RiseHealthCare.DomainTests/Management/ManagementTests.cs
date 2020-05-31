@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using RiseHealthCare.Domain.Management.Enums;
-using System;
 using Xunit;
 
 namespace RiseHealthCare.DomainTests.Management
@@ -47,7 +46,6 @@ namespace RiseHealthCare.DomainTests.Management
         [Fact(DisplayName = "Testing calculation time of work for professional")]
         public void Profissional_CalculationTimeOfWork()
         {
-            
         }
     }
 }

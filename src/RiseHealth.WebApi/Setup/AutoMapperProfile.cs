@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using RiseHealth.WebApi.DTOs.Common;
 using RiseHealth.WebApi.DTOs.Management;
@@ -15,10 +12,11 @@ namespace RiseHealth.WebApi.Setup
     {
         public AutoMapperProfile()
         {
-            CreateMap<ProfessionalDTO, Professional>().ReverseMap();
-            CreateMap<CouncilDTO, Council>().ReverseMap();
-            CreateMap<PhoneDTO, Phone>().ReverseMap();
-            CreateMap<ProcedureDTO, Procedure>().ReverseMap();
+            CreateMap<ProfessionalDto, Professional>()
+                .ReverseMap();
+            CreateMap<CouncilDto, Council>().ReverseMap();
+            CreateMap<PhoneDto, Phone>().ReverseMap();
+            CreateMap<ProcedureDto, Procedure>().ReverseMap();
         }
     }
 }

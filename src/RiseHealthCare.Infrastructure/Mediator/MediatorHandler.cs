@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
 using FluentValidation.Results;
 using MediatR;
 using RiseHealthCare.Infrastructure.Messages;
+using System.Threading.Tasks;
 
 namespace RiseHealthCare.Infrastructure.Mediator
 {
@@ -13,10 +13,10 @@ namespace RiseHealthCare.Infrastructure.Mediator
         {
             _mediator = mediator;
         }
-        
+
         public async Task PublishEvent<T>(T domainEvent) where T : Event
         {
-             await _mediator.Publish(domainEvent);
+            await _mediator.Publish(domainEvent);
         }
 
         public async Task<ValidationResult> SendCommand<T>(T command) where T : Command

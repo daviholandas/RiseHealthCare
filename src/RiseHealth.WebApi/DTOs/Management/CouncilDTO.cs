@@ -1,8 +1,6 @@
-using System;
-
 namespace RiseHealth.WebApi.DTOs.Management
 {
-    public class CouncilDTO
+    public class CouncilDto
     {
         public string Name { get; set; }
         public string RegistrationCode { get; set; }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RiseHealth.WebApi.Controllers;
 using RiseHealth.WebApi.DTOs.Management;
 using RiseHealthCare.Domain.Management;
 using RiseHealthCare.Infrastructure.Data.Repositories.Management;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RiseHealth.WebApi.V1.Management
 {
@@ -18,7 +16,7 @@ namespace RiseHealth.WebApi.V1.Management
         private readonly IMapper _mapper;
 
         public ProfessionalsController(
-            IProfessionalRepository professionalRepository, 
+            IProfessionalRepository professionalRepository,
             IMapper mapper)
         {
             _professionalRepository = professionalRepository;
@@ -26,16 +24,16 @@ namespace RiseHealth.WebApi.V1.Management
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ProfessionalDTO>> ListProfessionals()
-            => _mapper.Map<IEnumerable<ProfessionalDTO>>(await _professionalRepository.GetAllProfessionals());
-        
+        public async Task<IEnumerable<ProfessionalDto>> ListProfessionals()
+            => _mapper.Map<IEnumerable<ProfessionalDto>>(await _professionalRepository.GetAllProfessionals());
+
         [HttpPost]
-        public  ActionResult CreateProfessional(ProfessionalDTO professionalDto)
+        public ActionResult CreateProfessional(ProfessionalDto professionalDto)
         {
             var professional = _mapper.Map<Professional>(professionalDto);
-             _professionalRepository.SaveProfessional(professional);
+            _professionalRepository.SaveProfessional(professional);
 
-             return Ok();
+            return Ok();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using System;
 using RiseHealthCare.Domain.Shared.ValueObjects;
 using Xunit;
 
@@ -18,7 +17,6 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         [Fact(DisplayName = "Testing show age information.")]
         public void Patient_ShowAge_ShowingCorrectAgeInformation()
         {
-            
         }
 
         [Theory(DisplayName = "Testing validation CPF.")]
@@ -28,12 +26,11 @@ namespace RiseHealthCare.DomainTests.MedicalCare
         public void CPF_CPFVerification(string cpf, bool resultValidation)
         {
             //Arrange
-            
+
             //Act
             var result = CPF.Validate(cpf);
             //Assert
             result.Should().Be(resultValidation);
-
         }
     }
 }

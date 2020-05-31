@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using RiseHealthCare.Infrastructure.Data.Repositories.Management;
 
@@ -11,10 +10,10 @@ namespace RiseHealthCare.Infrastructure.IoC
             //Contexts
             services.AddScoped<ApplicationDbContext>();
             //Mediator
-            
+
             //Repositories
             services.AddScoped<IProfessionalRepository, ProfessionalRepository>();
-           
+
             return services;
         }
     }

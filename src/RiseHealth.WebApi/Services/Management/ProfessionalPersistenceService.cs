@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using RiseHealth.WebApi.DTOs.Management;
 using RiseHealthCare.Domain.Management;
 using RiseHealthCare.Infrastructure.Data.Repositories.Management;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RiseHealth.WebApi.Services.Management
 {
@@ -18,25 +18,24 @@ namespace RiseHealth.WebApi.Services.Management
             _mapper = mapper;
             _repository = repository;
         }
-        
-        
-        public async Task<bool> SaveProfessional(ProfessionalDTO professionalDto)
+
+        public async Task<bool> SaveProfessional(ProfessionalDto professionalDto)
         {
-             _repository.SaveProfessional(_mapper.Map<Professional>(professionalDto));
+            _repository.SaveProfessional(_mapper.Map<Professional>(professionalDto));
             return true;
         }
 
-        public Task<ProfessionalDTO> GetProfessionalById(Guid id)
+        public Task<ProfessionalDto> GetProfessionalById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ProfessionalDTO> GetProfessionalByCode(int code)
+        public Task<ProfessionalDto> GetProfessionalByCode(int code)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ProfessionalDTO>> GetAllProfessionals()
+        public Task<IEnumerable<ProfessionalDto>> GetAllProfessionals()
         {
             throw new NotImplementedException();
         }

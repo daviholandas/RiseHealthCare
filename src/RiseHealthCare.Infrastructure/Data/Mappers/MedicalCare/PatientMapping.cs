@@ -26,7 +26,8 @@ namespace RiseHealthCare.Infrastructure.Mappers.MedicalCare
                 .HasColumnType("varchar(20)")
                 .IsRequired();
 
-            builder.OwnsOne(p => p.CPF, c => {
+            builder.OwnsOne(p => p.CPF, c =>
+            {
                 c.Property(c => c.Number)
                     .IsRequired()
                     .HasMaxLength(CPF.CPFMaxLength)
@@ -36,7 +37,7 @@ namespace RiseHealthCare.Infrastructure.Mappers.MedicalCare
                 c.HasIndex(p => p.Number)
                     .IsUnique();
             });
-            
+
             builder.Property(p => p.RG)
                 .HasColumnType("varchar(25)");
 

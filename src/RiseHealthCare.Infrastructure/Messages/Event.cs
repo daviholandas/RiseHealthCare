@@ -1,5 +1,5 @@
-using System;
 using MediatR;
+using System;
 
 namespace RiseHealthCare.Infrastructure.Messages
 {
@@ -9,6 +9,7 @@ namespace RiseHealthCare.Infrastructure.Messages
         {
             TimeStamp = DateTime.Now;
         }
+
         public DateTime TimeStamp { get; private set; }
     }
 }

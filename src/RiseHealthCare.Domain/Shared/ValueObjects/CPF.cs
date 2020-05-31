@@ -7,19 +7,21 @@ namespace RiseHealthCare.Domain.Shared.ValueObjects
     {
         public CPF(string number)
         {
-            if(!Validate(number)) throw new DomainException("CPF invalid.");
+            if (!Validate(number)) throw new DomainException("CPF invalid.");
             Number = number;
         }
-        private CPF(){}
+
+        private CPF()
+        {
+        }
+
         public string Number { get; private set; }
         public const int CPFMaxLength = 14;
-        
-
 
         public static bool Validate(string cpf)
         {
             cpf = cpf.OnlyNumber(cpf);
-            
+
             if (cpf.Length > 11)
                 return false;
 

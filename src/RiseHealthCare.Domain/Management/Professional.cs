@@ -8,7 +8,8 @@ namespace RiseHealthCare.Domain.Management
 {
     public class Professional : Entity, IAggregateRoot
     {
-        public Professional(int code, string name, string photo, DateTime hiringDate, DateTime firingDate,
+
+        public Professional(int code, string name, string photo, DateTime? hiringDate, DateTime? firingDate,
             Council council, IList<Phone> phones, IList<Procedure> procedures, bool active = true)
         {
             Code = code;
@@ -23,10 +24,8 @@ namespace RiseHealthCare.Domain.Management
 
             Validate();
         }
+        protected Professional() {}
 
-        private Professional()
-        {
-        }
 
         public int Code { get; private set; }
         public string Name { get; private set; }
@@ -42,8 +41,6 @@ namespace RiseHealthCare.Domain.Management
         {
             Procedures.Add(procedure);
         }
-
-        
 
         public override void Validate()
         {

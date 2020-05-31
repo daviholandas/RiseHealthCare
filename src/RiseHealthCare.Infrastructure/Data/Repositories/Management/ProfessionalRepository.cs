@@ -1,8 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using RiseHealthCare.Domain.Management;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using RiseHealthCare.Domain.Management;
 
 namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
 {
@@ -12,11 +12,12 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
         {
             _context = context;
         }
+
         private readonly ApplicationDbContext _context;
-        
-        public void SaveProfessional(Professional professional)
+
+        public  void SaveProfessional(Professional professional)
         {
-            _context.Professionals.Add(professional);
+            _context.Professionals.Add(professional); 
             _context.SaveChangesAsync();
         }
 
@@ -28,14 +29,14 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
 
         public void DeleteProfessional(Guid id)
         {
-            var professional =  GetProfessionalById(id).Result;
+            var professional = GetProfessionalById(id).Result;
             _context.Professionals.Remove(professional);
         }
 
         public async Task<Professional> GetProfessionalById(Guid id)
         {
-          return await _context.Professionals.AsNoTracking()
-              .FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Professionals.AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Professional> GetProfessionalByCode(int code)
@@ -48,7 +49,7 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
         {
             return await _context.Professionals.ToListAsync();
         }
-        
+
         public void Dispose()
         {
             _context?.Dispose();

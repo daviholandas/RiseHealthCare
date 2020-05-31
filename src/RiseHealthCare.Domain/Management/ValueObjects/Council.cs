@@ -1,5 +1,4 @@
 ﻿using RiseHealthCare.Domain.Shared.DomainObjects;
-using System;
 using System.Collections.Generic;
 
 namespace RiseHealthCare.Domain.Management.ValueObjects
@@ -11,7 +10,6 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
             Name = name;
             RegistrationCode = registrationCode;
             Estate = estate;
-
         }
 
         private Council()
@@ -23,7 +21,6 @@ namespace RiseHealthCare.Domain.Management.ValueObjects
         public string Estate { get; private set; }
 
         public override string ToString() => $"{Name} - {RegistrationCode}/{Estate}";
-
 
         protected override IEnumerable<object> GetAtomicValues()
         {

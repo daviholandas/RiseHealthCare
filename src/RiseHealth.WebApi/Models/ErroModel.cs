@@ -8,6 +8,7 @@ namespace RiseHealth.WebApi.Models
         {
             Errors = errors;
         }
+
         public List<string> Errors { get; set; }
     }
 }

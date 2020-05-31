@@ -9,7 +9,6 @@ namespace RiseHealth.WebApi.Filters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
@@ -17,7 +16,7 @@ namespace RiseHealth.WebApi.Filters
             if (!context.ModelState.IsValid)
             {
                 var errors = new ErrorModel(context.ModelState.GetErrorsMessages());
-                context.Result =  new BadRequestObjectResult(errors);
+                context.Result = new BadRequestObjectResult(errors);
             }
         }
     }
