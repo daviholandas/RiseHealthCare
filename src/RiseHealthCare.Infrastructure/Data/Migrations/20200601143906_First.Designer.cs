@@ -10,8 +10,8 @@ using RiseHealthCare.Infrastructure;
 namespace RiseHealthCare.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200601021847_Second")]
-    partial class Second
+    [Migration("20200601143906_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

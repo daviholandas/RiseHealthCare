@@ -5,6 +5,7 @@ using RiseHealthCare.Infrastructure.Data.Repositories.Management;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiseHealth.WebApi.ViewModels.Management;
 
 namespace RiseHealth.WebApi.Services.Management
 {
@@ -21,23 +22,26 @@ namespace RiseHealth.WebApi.Services.Management
 
         public async Task<bool> SaveProfessional(ProfessionalDto professionalDto)
         {
-            _repository.SaveProfessional(_mapper.Map<Professional>(professionalDto));
-            return true;
+            var result = await _repository.SaveProfessional(_mapper.Map<Professional>(professionalDto));
+
+            if (result > 0)
+                return true;
+           
+            return false;
         }
 
-        public Task<ProfessionalDto> GetProfessionalById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<ProfessionalViewModel> GetProfessionalById(Guid id)
+            =>  _mapper.Map<ProfessionalViewModel>(await _repository.GetProfessionalById(id));
 
-        public Task<ProfessionalDto> GetProfessionalByCode(int code)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<ProfessionalViewModel> GetFullInfoProfessional(Guid id)
+            => _mapper.Map<ProfessionalViewModel>(await _repository.GetProfessionalById(id));
 
-        public Task<IEnumerable<ProfessionalDto>> GetAllProfessionals()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<ProfessionalViewModel> GetProfessionalByCode(int code)
+            => _mapper.Map<ProfessionalViewModel>(await _repository.GetProfessionalByCode(code));
+
+        public async Task<IEnumerable<ProfessionalBasicViewModel>> GetAllProfessionals()
+            => _mapper.Map<IEnumerable<ProfessionalBasicViewModel>>( await _repository.GetAllProfessionals());
+
+      
     }
 }

@@ -31,8 +31,8 @@ namespace RiseHealthCare.Domain.Management
 
         public override void Validate()
         {
-            Validations.ValidateIfNull(Code, "Code can't be null.");
             Validations.ValidateIfEmpty(Name, "Name can't be empty.");
+            Validations.ValidateStringLength(Name, 3, "Name can't be less than 3 characters.");
         }
     }
 }

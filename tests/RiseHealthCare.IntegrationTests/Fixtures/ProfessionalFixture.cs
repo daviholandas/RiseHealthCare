@@ -36,10 +36,9 @@ namespace RiseHealthCare.IntegrationTests.Fixtures
             return procedures.Generate(quantity);
         }
 
-        public ProfessionalDTO GenerateProfessionalDto()
+        public ProfessionalDto GenerateProfessionalDto()
         {
-            var professionalDto = new Faker<ProfessionalDTO>("pt_BR")
-                .RuleFor(p => p.Code, f => f.Random.Int(1, 100))
+            var professionalDto = new Faker<ProfessionalDto>("pt_BR")
                 .RuleFor(p => p.Name, f => f.Person.FullName)
                 .RuleFor(p => p.Procedures, f => GenerateProceduresDtos(20));
 

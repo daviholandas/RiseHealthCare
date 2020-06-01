@@ -2,6 +2,7 @@ using RiseHealth.WebApi.DTOs.Management;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RiseHealth.WebApi.ViewModels.Management;
 
 namespace RiseHealth.WebApi.Services.Management
 {
@@ -9,10 +10,9 @@ namespace RiseHealth.WebApi.Services.Management
     {
         Task<bool> SaveProfessional(ProfessionalDto professionalDto);
 
-        Task<ProfessionalDto> GetProfessionalById(Guid id);
-
-        Task<ProfessionalDto> GetProfessionalByCode(int code);
-
-        Task<IEnumerable<ProfessionalDto>> GetAllProfessionals();
+        Task<ProfessionalViewModel> GetProfessionalById(Guid id);
+        Task<ProfessionalViewModel> GetFullInfoProfessional(Guid id);
+        Task<ProfessionalViewModel> GetProfessionalByCode(int code);
+        Task<IEnumerable<ProfessionalBasicViewModel>> GetAllProfessionals();
     }
 }

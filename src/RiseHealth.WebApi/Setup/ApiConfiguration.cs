@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RiseHealth.WebApi.Filters;
 using RiseHealth.WebApi.Services.Management;
+using RiseHealth.WebApi.Setup.AutoMapper;
 using RiseHealthCare.Infrastructure;
 using RiseHealthCare.Infrastructure.Mediator;
 
@@ -21,7 +22,7 @@ namespace RiseHealth.WebApi.Setup
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             //AutoMapper
-            services.AddAutoMapper(typeof(AutoMapperProfile));
+            services.AddAutoMapper(typeof(DtoProfile), typeof(ViewModelProfile));
 
             //Versioning
             services.AddApiVersioning(options =>

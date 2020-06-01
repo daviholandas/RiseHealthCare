@@ -2,6 +2,7 @@ using AutoMapper;
 using Moq;
 using RiseHealth.WebApi.DTOs.Management;
 using RiseHealth.WebApi.Setup;
+using RiseHealth.WebApi.Setup.AutoMapper;
 using RiseHealthCare.Domain.Management;
 using RiseHealthCare.IntegrationTests.Fixtures;
 using Xunit;
@@ -27,7 +28,7 @@ namespace RiseHealthCare.IntegrationTests
 
             //Act
             var autoMapperConfig = new MapperConfiguration(cfg =>
-                cfg.AddProfile(new AutoMapperProfile()));
+                cfg.AddProfile(new DtoProfile()));
 
             var mapper = autoMapperConfig.CreateMapper();
             var professional = mapper.Map<Professional>(professionalDto);
@@ -42,11 +43,11 @@ namespace RiseHealthCare.IntegrationTests
             //Arrange
             var professional = _professionalFixture.GenerateProfessional();
             var autoMapperConfig = new MapperConfiguration(cfg =>
-                cfg.AddProfile(new AutoMapperProfile()));
+                cfg.AddProfile(new DtoProfile()));
 
             //Act
             var maper = autoMapperConfig.CreateMapper();
-            var profissionalDto = maper.Map<ProfessionalDTO>(professional);
+            var profissionalDto = maper.Map<ProfessionalDto>(professional);
 
             //Assert
             Assert.Equal(professional.Name, profissionalDto.Name);
