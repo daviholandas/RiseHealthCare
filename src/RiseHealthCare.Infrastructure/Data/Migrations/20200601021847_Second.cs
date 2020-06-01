@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RiseHealthCare.Infrastructure.Data.Migrations
 {
-    public partial class First : Migration
+    public partial class Second : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,8 @@ namespace RiseHealthCare.Infrastructure.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true),
-                    Code = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(200)", nullable: false),
                     Photo = table.Column<string>(type: "varchar(100)", nullable: true),
                     HiringDate = table.Column<DateTime>(type: "datetime", nullable: true),

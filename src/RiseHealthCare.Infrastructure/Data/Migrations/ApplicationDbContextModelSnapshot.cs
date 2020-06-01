@@ -61,7 +61,9 @@ namespace RiseHealthCare.Infrastructure.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Code")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("FiringDate")
                         .HasColumnType("datetime");

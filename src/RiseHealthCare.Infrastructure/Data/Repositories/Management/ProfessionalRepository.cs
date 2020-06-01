@@ -15,10 +15,10 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
 
         private readonly ApplicationDbContext _context;
 
-        public  void SaveProfessional(Professional professional)
+        public async Task<int> SaveProfessional(Professional professional)
         {
             _context.Professionals.Add(professional); 
-            _context.SaveChangesAsync();
+           return await  _context.SaveChangesAsync();
         }
 
         public void UpdateProfessional(Professional professional)

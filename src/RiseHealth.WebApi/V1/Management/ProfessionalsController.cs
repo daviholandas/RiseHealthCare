@@ -28,10 +28,11 @@ namespace RiseHealth.WebApi.V1.Management
             => _mapper.Map<IEnumerable<ProfessionalDto>>(await _professionalRepository.GetAllProfessionals());
 
         [HttpPost]
-        public ActionResult CreateProfessional(ProfessionalDto professionalDto)
+        public async Task<ActionResult> CreateProfessional(ProfessionalDto professionalDto)
         {
+            
             var professional = _mapper.Map<Professional>(professionalDto);
-            _professionalRepository.SaveProfessional(professional);
+            await _professionalRepository.SaveProfessional(professional);
 
             return Ok();
         }

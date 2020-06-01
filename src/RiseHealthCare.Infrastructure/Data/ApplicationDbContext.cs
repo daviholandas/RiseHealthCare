@@ -57,7 +57,7 @@ namespace RiseHealthCare.Infrastructure
                         break;
                 }
             }
-            return base.SaveChangesAsync(cancellationToken);
+            return base.SaveChangesAsync();
         }
     }
 }

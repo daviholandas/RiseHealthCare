@@ -10,8 +10,8 @@ using RiseHealthCare.Infrastructure;
 namespace RiseHealthCare.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200529013206_First")]
-    partial class First
+    [Migration("20200601021847_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,7 +63,9 @@ namespace RiseHealthCare.Infrastructure.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("Code")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("FiringDate")
                         .HasColumnType("datetime");

@@ -8,7 +8,7 @@ namespace RiseHealthCare.Infrastructure.Data.Repositories.Management
 {
     public interface IProfessionalRepository : IRepository<Professional>
     {
-        void SaveProfessional(Professional professional);
+        Task<int> SaveProfessional(Professional professional);
 
         void UpdateProfessional(Professional professional);
 

@@ -14,7 +14,8 @@ namespace RiseHealthCare.Infrastructure.Mappers.Management
 
             builder.Property(p => p.Code)
                 .HasColumnType("int")
-                .IsRequired();
+                .ValueGeneratedOnAdd();
+
             builder.HasIndex(p => p.Code)
                 .IsUnique();
 

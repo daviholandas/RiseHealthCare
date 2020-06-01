@@ -31,16 +31,16 @@ namespace RiseHealthCare.Domain.Shared.DomainObjects
             }
         }
 
-        public static void ValidateSize(string value, int max, string message)
+        public static void ValidateStringLength(string value, int minimun, string message)
         {
             var length = value.Trim().Length;
-            if (length > max)
+            if (length < minimun)
             {
                 throw new DomainException(message);
             }
         }
 
-        public static void ValidateSize(string value, int minimum, int max, string message)
+        public static void ValidateStringLength(string value, int minimum, int max, string message)
         {
             var length = value.Trim().Length;
             if (length < minimum || length > max)
